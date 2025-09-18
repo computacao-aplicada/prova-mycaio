@@ -10,11 +10,29 @@ class ValidadorTest {
     }
 
     @Test
-    void deveRejeitarEntradasInvalidas() {
+    void deveValidarCPFComEspacosExternos() {
+        assertTrue(Validador.validarCPF(" 529.982.247-25 "));
+    }
+
+    @Test
+    void deveRejeitarCPFNulo() {
         assertFalse(Validador.validarCPF(null));
+    }
+
+    @Test
+    void deveRejeitarCPFVazio() {
         assertFalse(Validador.validarCPF(""));
+    }
+
+    @Test
+    void deveRejeitarCPFComCaractereInvalido() {
         assertFalse(Validador.validarCPF("529.982.247-2X"));
+    }
+
+    @Test
+    void deveRejeitarCPFComSequenciaRepetida() {
         assertFalse(Validador.validarCPF("00000000000"));
+        assertFalse(Validador.validarCPF("111.111.111-11"));
     }
 
     @Test
@@ -27,10 +45,5 @@ class ValidadorTest {
     void deveRejeitarDVIncorreto() {
         assertFalse(Validador.validarCPF("529.982.247-24"));
         assertFalse(Validador.validarCPF("123.456.789-00"));
-    }
-
-    @Test
-    void deveValidarCPFComEspacosExternos() {
-        assertTrue(Validador.validarCPF(" 529.982.247-25 "));
     }
 }
