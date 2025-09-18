@@ -28,4 +28,9 @@ class ValidadorTest {
         assertFalse(Validador.validarCPF("529.982.247-24"));
         assertFalse(Validador.validarCPF("123.456.789-00"));
     }
+
+    @Test
+    void deveValidarCPFComEspacosExternos() {
+        assertTrue(Validador.validarCPF(" 529.982.247-25 "));
+    }
 }
