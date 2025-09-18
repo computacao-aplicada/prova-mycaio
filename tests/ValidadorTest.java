@@ -19,7 +19,13 @@ class ValidadorTest {
 
     @Test
     void deveRejeitarTamanhosIncorretos() {
-        assertFalse(Validador.validarCPF("935.411.347-8"));
-        assertFalse(Validador.validarCPF("935.411.347-800"));
+        assertFalse(Validador.validarCPF("935.411.347-8"));   // 10 dígitos
+        assertFalse(Validador.validarCPF("935.411.347-800")); // 12 dígitos
+    }
+
+    @Test
+    void deveRejeitarDVIncorreto() {
+        assertFalse(Validador.validarCPF("529.982.247-24"));
+        assertFalse(Validador.validarCPF("123.456.789-00"));
     }
 }

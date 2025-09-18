@@ -5,23 +5,28 @@ public class Validador {
             return false;
         }
 
+        //Remover espaços, pontos e traços
         String cpfLimpo = cpf.trim().replaceAll("[.-]", "");
 
+        //Verifica se o CPF possui 11 dígitos
         if (!cpfLimpo.matches("\\d{11}")) {
             return false;
         }
 
+        //Verifica se o CPF possui dígitos repetidos
         if (temDigitosRepetidos(cpfLimpo)) {
             return false;
         }
 
-        return checarDigitosVerificadores(cpfLimpo);
+        return checarDigitosVerificadores(cpfLimpo); // Verifica os dígitos verificadores
     }
 
+    //Função utilizada para ver se o CPF possui dígitos repetidos
     private static boolean temDigitosRepetidos(String cpf) {
         return cpf.chars().distinct().count() == 1;
     }
 
+    //Função utilizada para ver se o cpf é válido
     private static boolean checarDigitosVerificadores(String cpf) {
         int[] digitos = cpf.chars().map(c -> c - '0').toArray();
 
